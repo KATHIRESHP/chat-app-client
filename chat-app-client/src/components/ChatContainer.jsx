@@ -75,7 +75,7 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
                 <div className='flex bg-white/10 justify-between w-full p-2'>
                     <div className='flex items-center'>
                         <img
-                            src={`data:image/svg+xml;base64,${currentChat.avatarImage}`}
+                            src={`${currentChat.avatarImage}`}
                             alt='avatar'
                             className='h-2/12 w-2/12 mx-6'
                         ></img>

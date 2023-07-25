@@ -12,9 +12,9 @@ const SetAvatar = () => {
 
   const api = "http://api.multiavatar.com/65545"
   const navigate = useNavigate();
-  const [avatar, setAvatar] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedAvatar, setSelectedAvatar] = useState(undefined);
+  const [isSelected, setIsSelected] = useState(false);
+  const [baseSource, setBaseSource] = useState("");
 
 
   const toastOptions = {
@@ -25,20 +25,19 @@ const SetAvatar = () => {
   }
 
   useEffect(() => {
-    if(!localStorage.getItem('chat-app-user'))
-    {
+    if (!localStorage.getItem('chat-app-user')) {
       navigate('/login');
+    }
+    else {
+      setIsLoading(false);
     }
   }, [])
 
   const setProfilePicture = async () => {
-    if (selectedAvatar == -1) {
-      toast.error("Please select any avatar")
-    }
-    else {
+    if(isSelected) {
       const user = await JSON.parse(localStorage.getItem('chat-app-user'));
       const { data } = await axios.post(`${setAvatarRoute}/${user._id}`, {
-        image: avatar[selectedAvatar]
+        image: baseSource
       });
       console.log(data);
       if (data.isSet) {
@@ -53,13 +52,42 @@ const SetAvatar = () => {
         toast.error("Error in setting profile", toastOptions);
       }
     }
+    else
+    {
+      toast.error("Kindly select the profile", toastOptions);
+    }
   }
 
-  const handleImage = () => {
-    console.log(e.target.files[0]);
+  const handleImage = async (e) => {
+    const file = e.target.files[0];
+    if (file.size < 2097152) {
+      const base64 = await convertToBase64(file);
+      setBaseSource(base64);
+      toast.warning("Once choosen you will not be able to change", toastOptions);
+      setIsSelected(true);
+    }
+    else
+    {
+      toast.error("Please choose size below 2MB", toastOptions);
+    }
+  }
+  const convertToBase64 = (file) => {
+    return new Promise((res, rej) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        res(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        rej(error);
+      }
+    })
   }
   return (
     <>
+    <ToastContainer/>
       {
         isLoading ? <div className=' h-screen flex justify-center items-center gap-11 '>
           <div className='animate-pulse text-white'>
@@ -71,7 +99,8 @@ const SetAvatar = () => {
             <div className='mb-11'>
               <div className='text-3xl italic'>Pick any avatar as your profile</div>
             </div>
-            <input type='file' onChange={(e) => handleImage(e)}></input>
+            <input type='file' onChange={(e) => handleImage(e)} className='bg-teal-600 p-5 rounded-md' accept="image/*" ></input>
+            <img src={baseSource} className='h-4/12 w-4/12 my-5 shadow-2xl shadow-black rounded-3xl'></img>
             <button className='bg-blue-600 px-3 py-1 text-lg mt-11 rounded-sm' onClick={() => setProfilePicture()}>Choose</button>
           </div>
       }
