@@ -29,18 +29,6 @@ const SetAvatar = () => {
     {
       navigate('/login');
     }
-    const effect = async () => {
-      const data = [];
-      for (let i = 0; i < 5; i++) {
-        const img = await axios.get(`${api}/${Math.round(Math.random() * 100)}`);
-        const temp = img.data;
-        const buffer = new Buffer(temp);
-        data.push(buffer.toString("base64"));
-      }
-      setAvatar(data);
-      setIsLoading(false);
-    }
-    effect();
   }, [])
 
   const setProfilePicture = async () => {
@@ -66,6 +54,10 @@ const SetAvatar = () => {
       }
     }
   }
+
+  const handleImage = () => {
+    console.log(e.target.files[0]);
+  }
   return (
     <>
       {
@@ -79,23 +71,7 @@ const SetAvatar = () => {
             <div className='mb-11'>
               <div className='text-3xl italic'>Pick any avatar as your profile</div>
             </div>
-            <div className='flex gap-8'>
-              {
-                avatar.map((avatar, index) => {
-                  return (
-                    <div key={index}>
-                      <div className={`${selectedAvatar === index ? " selected " : ""}`}>
-                        <img src={`data:image/svg+xml;base64,${avatar}`} alt='avatar' style={{ height: "100px", width: "100px" }}
-                          onClick={() => {
-                            setSelectedAvatar(index);
-                            console.log(selectedAvatar);
-                          }}></img>
-                      </div>
-                    </div>
-                  )
-                })
-              }
-            </div>
+            <input type='file' onChange={(e) => handleImage(e)}></input>
             <button className='bg-blue-600 px-3 py-1 text-lg mt-11 rounded-sm' onClick={() => setProfilePicture()}>Choose</button>
           </div>
       }
