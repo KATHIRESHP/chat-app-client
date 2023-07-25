@@ -11,6 +11,7 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
     const [arrivalMsg, setArrivalMsg] = useState(null);
+    const scrollRef = useRef();
 
     useEffect(() => {
         const effect = async () => {
@@ -44,8 +45,8 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
         });
 
         socket.current.emit("send-msg", {
-            from: currentUser._id,
             to: currentChat._id,
+            from: currentUser._id,
             message: msg,
         })
 
@@ -68,6 +69,9 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
         arrivalMsg && setMessages((prev) => [...prev, arrivalMsg]);
     }, [arrivalMsg])
 
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({behaviour: "smmooth"})
+    })
 
     return (
         currentChat && (

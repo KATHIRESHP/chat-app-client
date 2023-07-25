@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { allUsersRoute, host } from '../utils/APIroutes'
 import Contacts from '../components/Contacts';
-import loader from '../assets/loader.gif'
 import Welcome from '../components/Welcome';
 import ChatContainer from '../components/ChatContainer';
 import {io} from 'socket.io-client'
@@ -23,7 +22,7 @@ const Chat = () => {
             socket.current = io(host);
             socket.current.emit("add-user", currentUser._id);
         }
-    }, [])
+    }, [currentUser])
 
     useEffect(() => {
         const effect = async () => {
