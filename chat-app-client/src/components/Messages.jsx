@@ -2,7 +2,7 @@ import React from 'react'
 
 const Messages = ({ messages }) => {
   return (
-    <>
+    <div className='bg-wallpaper bg-fixed bg-cover bg-center'>
       {messages.map((msg, index) => {
         return (
           <div className={`flex ${msg.fromSelf ? " justify-end" : " justify-start"}`} key={index}>
@@ -14,7 +14,7 @@ const Messages = ({ messages }) => {
           </div>
         )
       })}
-    </>
+    </div>
   )
 }
 
