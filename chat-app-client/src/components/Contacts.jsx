@@ -29,7 +29,7 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
                             <div>
                                 <div className='flex flex-shrink-1 cursor-not-allowed py-3 m-2 p-2 justify-center sticky top-0 bg-blue-950 items-center'>
                                     <img src={`${currentUserImage}`}
-                                    style={{borderRadius: "50%", height: "100px", width: "100px"}}
+                                    style={{borderRadius: "50%"}}
                                         alt='avatar' className='h-8/12 w-8/12 animate-pulse' ></img>
                                 </div>
                                 {
@@ -37,13 +37,13 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
                                         return (
                                             <>
                                                 <div
-                                                    className={`contact cursor-pointer bg-white/10 flex flex-shrink-1 justify-start items-center m-2 p-2 ${index === currentSelected ? "rounded-md bg-white/50 shadow-2xl shadow-black " : ""}`}
+                                                    className={`contact cursor-pointer bg-white/10 md:flex flex-shrink-1 justify-start items-center m-2 p-2 ${index === currentSelected ? "rounded-md bg-white/50 shadow-2xl shadow-black " : ""}`}
                                                     onClick={() => changeCurrentChat(index, contact)}
                                                     key={index}>
                                                     <img src={`${contact.avatarImage}`}
-                                                        alt='avatar' className='h-3/12 w-3/12 mr-6' ></img>
+                                                        alt='avatar' className='invisible md:visible h-4/12 w-4/12 rounded-lg mr-6' ></img>
                                                     <div className='username'>
-                                                        <div className='text-lg md:text-xl'>{contact.username}</div>
+                                                        <div className='text-lg md:text-xl overflow-hidden'>{contact.username}</div>
                                                     </div>
                                                 </div>
                                             </>

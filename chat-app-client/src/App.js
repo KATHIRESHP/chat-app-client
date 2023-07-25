@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Home from './pages/Home'
 import SetAvatar from './pages/SetAvatar'
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path='*' element={<h1>Page not found</h1>} />
         </Routes>
       </BrowserRouter>
+     
     </div>
   )
 }

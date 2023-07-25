@@ -78,7 +78,7 @@ const Register = () => {
                 <div className='bg-white/10 p-11 rounded-md'>
                     <div className='flex justify-center gap-11 items-center'>
                         <img src={logo} alt='logo' className='h-16 animate-pulse shadow-2xl rounded-full bg-gradient-to-t from-blue-600 to-red-500'></img>
-                        <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-950 to-red-950 text-3xl'>Pazhagalam</span>
+                        <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-950 to-red-950 text-3xl'>Arattai</span>
                     </div>
                     <form onSubmit={(e) => submitHandler(e)} className='flex flex-col gap-5 mt-7'>
                         <input placeholder='Name' className="rounded-sm px-5 py-1 focus:ring-2 space-x-5" type='text' name='username'
