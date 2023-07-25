@@ -74,10 +74,10 @@ const Register = () => {
     return (
         <>
         <ToastContainer/>
-            <div className='flex flex-col h-screen w-screen justify-center items-center'>
-                <div className='bg-white/10 p-11 rounded-md'>
+            <div className='flex flex-col bg-forest bg-center bg-cover bg-fixed h-screen w-screen justify-center items-center'>
+                <div className='bg-white/50 p-11 rounded-md'>
                     <div className='flex justify-center gap-11 items-center'>
-                        <img src={logo} alt='logo' className='h-16 animate-pulse shadow-2xl rounded-full bg-gradient-to-t from-blue-600 to-red-500'></img>
+                        <img src={logo} alt='logo' className='h-16 shadow-2xl rounded-full bg-gradient-to-t from-blue-600 to-red-500'></img>
                         <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-950 to-red-950 text-3xl'>Arattai</span>
                     </div>
                     <form onSubmit={(e) => submitHandler(e)} className='flex flex-col gap-5 mt-7'>

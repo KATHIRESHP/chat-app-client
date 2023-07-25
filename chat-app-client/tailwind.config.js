@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage:{
-        'wallpaper': 'url("./assets/wallpaper.jpg")'
+        'wallpaper': 'url("./assets/wallpaper.jpg")',
+        'forest': 'url("./assets/forest.jpg")'
       }
     },
   },
