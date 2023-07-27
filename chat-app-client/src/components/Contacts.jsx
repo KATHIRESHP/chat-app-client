@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from 'react'
 import logo from '../assets/logo.png'
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import Lottie from 'lottie-react';
+import Paperplane from '../assets/Paperplane.json'
 import 'react-toastify/dist/ReactToastify.css';
 
-const Contacts = ({ contacts, currentUser, changeChat }) => {
+const Contacts = ({ contacts, currentUser, changeChat, contactLoaded }) => {
     const [currentUserName, setCurrentUserName] = useState(undefined);
     const [currentUserImage, setCurrentUserImage] = useState(undefined);
     const [currentSelected, setCurrentSelected] = useState(undefined);
@@ -16,7 +18,7 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
         draggable: true,
         pauseOnHover: true,
         theme: "dark"
-      }
+    }
 
     useEffect(() => {
         const effect = () => {
@@ -34,12 +36,10 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
     };
 
     const contactHandler = (e) => {
-        if(contactRef.current.classList.contains('hidden'))
-        {
+        if (contactRef.current.classList.contains('hidden')) {
             contactRef.current.classList.remove('hidden');
         }
-        else
-        {
+        else {
             contactRef.current.classList.add('hidden');
         }
     }
@@ -51,7 +51,7 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
     }
     return (
         <>
-        <ToastContainer/>
+            <ToastContainer />
             <div className='w-3/12 md:w-5/12 lg:w-4/12 xl:w-3/12 hidden h-screen md:flex md:flex-col transition-all ease-in-out justify-between overflow-scroll hover:overflow-scroll'>
                 {
                     currentUserName && currentUserImage && (
@@ -63,22 +63,24 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
                                         alt='avatar' className='h-8/12 w-8/12 animate-pulse' ></img>
                                 </div>
                                 {
-                                    contacts.map((contact, index) => {
-                                        return (
-                                            <>
-                                                <div
-                                                    className={`contact cursor-pointer bg-white/10 flex items-center flex-shrink-1 justify-center md:justify-start  m-2 p-2 ${index === currentSelected ? "rounded-md bg-white/50 shadow-2xl shadow-black " : ""}`}
-                                                    onClick={() => changeCurrentChat(index, contact)}
-                                                    key={index}>
-                                                    <img src={`${contact.avatarImage}`}
-                                                        alt='avatar' className='h-2/12 w-2/12 md:h-4/12 md:w-4/12 rounded-lg mr-6' ></img>
-                                                    <div className='username'>
-                                                        <div className='text-lg md:text-xl overflow-hidden'>{contact.username}</div>
+                                    !contactLoaded ?
+                                        <Lottie animationData={Paperplane} /> :
+                                        contacts.map((contact, index) => {
+                                            return (
+                                                <>
+                                                    <div
+                                                        className={`contact cursor-pointer bg-white/10 flex items-center flex-shrink-1 justify-center md:justify-start  m-2 p-2 ${index === currentSelected ? "rounded-md bg-white/50 shadow-2xl shadow-black " : ""}`}
+                                                        onClick={() => changeCurrentChat(index, contact)}
+                                                        key={index}>
+                                                        <img src={`${contact.avatarImage}`}
+                                                            alt='avatar' className='h-2/12 w-2/12 md:h-4/12 md:w-4/12 rounded-lg mr-6' ></img>
+                                                        <div className='username'>
+                                                            <div className='text-lg md:text-xl overflow-hidden'>{contact.username}</div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </>
-                                        )
-                                    })
+                                                </>
+                                            )
+                                        })
 
                                 }
                             </div>
@@ -88,12 +90,8 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
             </div>
             <div className='md:hidden absolute top-3 right-4 rounded-md flex flex-col gap-5'>
                 <button className='text-xl  bg-green-500 p-2 rounded-md' onClick={(e) => contactHandler(e)}><i class="bi bi-person-lines-fill"></i></button>
-                <button className='text-xl bg-blue-500 rounded-sm p-2 hover:bg-red-500'
-                        onClick={() => logoutHandler()}>
-                            <i class="bi bi-box-arrow-right"></i>
-                        </button>
             </div>
-            <div ref={contactRef} className='rounded-r-lg w-8/12 sm:w-6/12 bg-blue-500 md:hidden hidden h-screen absolute flex flex-col transition-all ease-in-out justify-between overflow-scroll hover:overflow-scroll'>
+            <div ref={contactRef} className='z-50 rounded-r-lg w-8/12 sm:w-6/12 bg-blue-500 md:hidden hidden h-screen absolute flex flex-col transition-all ease-in-out justify-between overflow-scroll hover:overflow-scroll'>
                 {
                     currentUserName && currentUserImage && (
                         <>
@@ -104,28 +102,35 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
                                         alt='avatar' className='h-8/12 w-8/12 animate-pulse' ></img>
                                 </div>
                                 {
-                                    contacts.map((contact, index) => {
-                                        return (
-                                            <>
-                                                <div
-                                                    className={`contact cursor-pointer bg-white/10 flex items-center flex-shrink-1 justify-start  m-2 p-2 ${index === currentSelected ? "rounded-md bg-white/50 shadow-2xl shadow-black " : ""}`}
-                                                    onClick={() => changeCurrentChat(index, contact)}
-                                                    key={index}>
-                                                    <img src={`${contact.avatarImage}`}
-                                                        alt='avatar' className='h-2/12 w-2/12 md:h-4/12 md:w-4/12 rounded-lg mr-6' ></img>
-                                                    <div className='username'>
-                                                        <div className='text-lg md:text-xl overflow-hidden'>{contact.username}</div>
+                                    !contactLoaded ?
+                                        <Lottie animationData={Paperplane} /> :
+                                        contacts.map((contact, index) => {
+                                            return (
+                                                <>
+                                                    <div
+                                                        className={`contact cursor-pointer bg-white/10 flex items-center flex-shrink-1 justify-start  m-2 p-2 ${index === currentSelected ? "rounded-md bg-white/50 shadow-2xl shadow-black " : ""}`}
+                                                        onClick={() => changeCurrentChat(index, contact)}
+                                                        key={index}>
+                                                        <img src={`${contact.avatarImage}`}
+                                                            alt='avatar' className='h-2/12 w-2/12 md:h-4/12 md:w-4/12 rounded-lg mr-6' ></img>
+                                                        <div className='username'>
+                                                            <div className='text-lg md:text-xl overflow-hidden'>{contact.username}</div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </>
-                                        )
-                                    })
+                                                </>
+                                            )
+                                        })
 
                                 }
                             </div>
                         </>
                     )
                 }
+                <></>
+                <button className='text-xl rounded-sm p-2 bg-red-500'
+                    onClick={() => logoutHandler()}>
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
             </div>
         </>
     )

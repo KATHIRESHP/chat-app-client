@@ -12,6 +12,7 @@ const Chat = () => {
     const [contacts, setContacts] = useState([]);
     const [currentUser, setCurrentUser] = useState(undefined);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [contactLoaded, setContactLoaded] = useState(false);
     const [currentChat, setCurrentChat] = useState(undefined);
     const navigate = useNavigate();
     const socket = useRef();
@@ -45,6 +46,7 @@ const Chat = () => {
                     const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
                     setContacts(data.data);
                     console.log("isNotLoaded true now");
+                    setContactLoaded(true);
                     console.log("Contacts set");
                 }
                 else {
@@ -64,7 +66,7 @@ const Chat = () => {
 
     return (
         <div className='flex relative sm:relative md:static h-screen'>
-            <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange}/>
+            <Contacts contacts={contacts} contactLoaded={contactLoaded} currentUser={currentUser} changeChat={handleChatChange}/>
             {
                 isLoaded && currentChat === undefined ?
                 <Welcome currentUser={currentUser}/>:
