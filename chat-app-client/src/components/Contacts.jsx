@@ -68,10 +68,10 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
                     )
                 }
             </div>
-            <div className='md:hidden bg-white absolute top-3 right-4 p-3 rounded-md' onClick={(e) => contactHandler(e)}>
+            <div className='md:hidden bg-green-500 absolute top-3 right-4 p-3 rounded-md' onClick={(e) => contactHandler(e)}>
                 <button className='text-2xl'><i class="bi bi-person-lines-fill"></i></button>
             </div>
-            <div ref={contactRef} className='w-6/12 bg-blue-500 md:hidden hidden h-screen absolute flex flex-col transition-all ease-in-out justify-between overflow-scroll hover:overflow-scroll'>
+            <div ref={contactRef} className='rounded-r-lg w-8/12 sm:w-6/12 bg-blue-500 md:hidden hidden h-screen absolute flex flex-col transition-all ease-in-out justify-between overflow-scroll hover:overflow-scroll'>
                 {
                     currentUserName && currentUserImage && (
                         <>
