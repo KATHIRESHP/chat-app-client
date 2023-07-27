@@ -32,7 +32,7 @@ const ChatInput = ({ handleSendMsg, currentChat }) => {
     }
 
     return (
-        <div className='bottom-3 fixed w-full md:w-[80%]'>
+        <div className='bottom-0 absolute w-full md:w-[80%]'>
             {
                 showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />
             }
