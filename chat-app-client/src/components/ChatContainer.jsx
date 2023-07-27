@@ -96,7 +96,7 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
                         </button>
                     </div>
                 </div>
-                <div className='text-white overflow-y-scroll h-full' style={{maxHeight: "78vh"}}>
+                <div className='text-white overflow-y-scroll h-full' style={{maxHeight: "80vh"}}>
                     <Messages messages={messages}/>
                 </div>
                     <ChatInput handleSendMsg={handleSendMsg} currentChat={currentChat}/> 
