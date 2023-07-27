@@ -89,7 +89,7 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex mr-3 items-center justify-end w-full'>
+                    <div className='md:flex mr-3 items-center justify-end w-full hidden'>
                         <button className='text-3xl bg-blue-500 rounded-sm p-2 hover:bg-red-500'
                         onClick={() => logoutHandler()}>
                             <i class="bi bi-box-arrow-right"></i>
