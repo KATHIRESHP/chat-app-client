@@ -34,7 +34,7 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
     }
     return (
         <>
-            <div className='w-3/12 hidden h-screen md:flex md:flex-col transition-all ease-in-out justify-between overflow-scroll hover:overflow-scroll'>
+            <div className='w-3/12 md:w-5/12 lg:w-4/12 xl:w-3/12 hidden h-screen md:flex md:flex-col transition-all ease-in-out justify-between overflow-scroll hover:overflow-scroll'>
                 {
                     currentUserName && currentUserImage && (
                         <>
