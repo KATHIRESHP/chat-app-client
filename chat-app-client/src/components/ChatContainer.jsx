@@ -81,7 +81,7 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
                         <img
                             src={`${currentChat.avatarImage}`}
                             alt='avatar'
-                            className='h-2/12 w-2/12 mx-6'
+                            className='h-4/12 w-4/12 md:h-2/12 md:w-2/12 mx-6'
                         ></img>
                         <div className='username'>
                             <div className='text-lg md:text-xl'>

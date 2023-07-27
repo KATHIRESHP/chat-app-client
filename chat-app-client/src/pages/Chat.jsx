@@ -63,7 +63,7 @@ const Chat = () => {
     }
 
     return (
-        <div className='flex'>
+        <div className='flex relative sm:relative md:static h-screen'>
             <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange}/>
             {
                 isLoaded && currentChat === undefined ?
