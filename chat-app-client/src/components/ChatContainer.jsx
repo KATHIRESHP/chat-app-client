@@ -6,6 +6,7 @@ import ChatInput from './ChatInput';
 import Messages from './Messages';
 import axios from 'axios';
 import { getAllMessages, sendMessageRoute } from '../utils/APIroutes';
+import {v4 as uuidv4} from "uuid";
 
 const ChatContainer = ({ currentChat, currentUser, socket }) => {
     const navigate = useNavigate();
@@ -44,11 +45,11 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
             msg: msg,
         });
 
-        socket.current.emit("send-msg", {
-            to: currentChat._id,
-            from: currentUser._id,
-            message: msg,
-        })
+        // socket.current.emit("send-msg", {
+        //     to: currentChat._id,
+        //     from: currentUser._id,
+        //     message: msg,
+        // })
 
         const tempMsg = [...messages];
         tempMsg.push({fromSelf: true, message: msg});
@@ -56,21 +57,23 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
 
     }
 
-    useEffect(() => {
-        if(socket.current)
-        {
-            socket.current.on("msg-receive", (msg) => {
-                setArrivalMsg({fromSelf: false, message: msg});
-            })
-        }
-    }, [])
+    // useEffect(() => {
+    //     if(socket.current)
+    //     {
+    //         console.log("Entered socket");
+    //         socket.current.on("msg-receive", (msg) => {
+    //             console.log({msg});
+    //             setArrivalMsg({fromSelf: false, message: msg});
+    //         })
+    //     }
+    // }, [])
 
     useEffect(() => {
         arrivalMsg && setMessages((prev) => [...prev, arrivalMsg]);
     }, [arrivalMsg])
 
     useEffect(() => {
-        scrollRef.current?.scrollIntoView({behaviour: "smmooth"})
+        scrollRef.current?.scrollIntoView({behaviour: "smooth"})
     })
 
     return (
@@ -97,7 +100,7 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
                     </div>
                 </div>
                 <div className='text-white flex-1 overflow-y-scroll h-full'>
-                    <Messages messages={messages}/>
+                    <Messages messages={messages} scrollRef={scrollRef} uuidv4={uuidv4} />
                 </div>
                     <ChatInput handleSendMsg={handleSendMsg} currentChat={currentChat}/> 
                 <ToastContainer/>
