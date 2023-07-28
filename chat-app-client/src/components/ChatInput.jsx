@@ -58,7 +58,7 @@ const ChatInput = ({ handleSendMsg, currentChat }) => {
             onChange={handleMsg}
           />
         </form>
-        <button className='text-3xl bg-green-600 px-4 py-1 rounded-l-xl' onClick={sendMsg}>
+        <button className='text-3xl bg-green-600 px-4 py-1' onClick={sendMsg}>
           <i className='bi bi-send-fill'></i>
         </button>
       </div>
