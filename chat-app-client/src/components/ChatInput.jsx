@@ -37,7 +37,7 @@ const ChatInput = ({ handleSendMsg, currentChat }) => {
   };
 
   return (
-    <div className='bottom-0 absolute w-full md:w-[80%] flex justify-end'>
+    <div className='bottom-0 absolute w-full md:w-[80%] justify-end'>
       {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
       <div className='flex w-full flex-1'>
         <button
@@ -58,10 +58,10 @@ const ChatInput = ({ handleSendMsg, currentChat }) => {
             onChange={handleMsg}
           />
         </form>
+        <button className='text-3xl bg-green-600 px-4 py-1 rounded-l-xl' onClick={sendMsg}>
+          <i className='bi bi-send-fill'></i>
+        </button>
       </div>
-      <button className='text-3xl bg-green-600 px-4 py-1 rounded-l-xl' onClick={sendMsg}>
-        <i className='bi bi-send-fill'></i>
-      </button>
     </div>
   );
 };
