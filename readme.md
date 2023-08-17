@@ -1,4 +1,4 @@
-![Screenshot (4)](https://github.com/KATHIRESHP/chat-app-client/assets/101267341/9afc3104-85c0-46af-8db1-b596a0cab470)# Chat App
+Chat App
 
 Welcome to the Chat App repository! This is a front-end project for a real-time chat application built using React and Tailwind CSS.
 
